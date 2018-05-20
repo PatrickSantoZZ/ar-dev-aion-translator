@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import {BUTTON_STYLE} from '../../constants/button-style-sheet'
@@ -8,6 +9,7 @@ class ButtonGroup extends Component {
         super(props);
 
         this.state = {
+            copied: false,
             isAsmoButtonPressed: false,
             isElyosButtonPressed: false
         };
@@ -30,11 +32,10 @@ class ButtonGroup extends Component {
             isAsmoButtonPressed: false,
             isElyosButtonPressed: true
         });
-
     }
 
     render() {
-        const {className, copyText} = this.props;
+        const {className, translatedTextToBeCopied} = this.props;
         const {isAsmoButtonPressed, isElyosButtonPressed} = this.state;
 
         return (
@@ -45,21 +46,21 @@ class ButtonGroup extends Component {
                     onClick={() => {
                         this.onPressAsmoButton();
                     }}
-                    style={{margin: 12}}/>
+                    style={{margin: 12, padding: 2}}/>
                 < RaisedButton
                     label="Elyos"
                     disabled={isElyosButtonPressed}
                     onClick={() => {
                         this.onPressElyosButton();
                     }}
-                    style={{margin: 12}}/>
-                < RaisedButton
-                    backgroundColor="#C5E1A5"
-                    label="Copy Text"
-                    onClick={() => {
-                      copyText()
-                    }}
-                    style={BUTTON_STYLE}/>
+                    style={{margin: 12, padding: 2}}/>
+                <CopyToClipboard text={translatedTextToBeCopied}
+                                 onCopy={() => this.setState({copied: true})}>
+                    < RaisedButton
+                        backgroundColor="#C5E1A5"
+                        label="Copy Text"
+                        style={BUTTON_STYLE}/>
+                </CopyToClipboard>
             </div>
 
         );
@@ -68,7 +69,7 @@ class ButtonGroup extends Component {
 
 ButtonGroup.propTypes = {
     className: PropTypes.string,
-    copyText: PropTypes.func.isRequired,
+    translatedTextToBeCopied: PropTypes.string.isRequired,
     toggle: PropTypes.func
 };
 
