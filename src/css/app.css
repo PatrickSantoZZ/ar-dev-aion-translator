@@ -1,0 +1,51 @@
+.app {
+    text-align: center;
+}
+
+.app-header {
+    background-color: #01579B;
+    height: 20px;
+    padding: 20px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px,
+    rgba(0, 0, 0, 0.12) 0 1px 4px;
+}
+
+.app-title {
+    display: block;
+    font-size: 6vw;
+}
+
+.app-intro {
+    font-size: large;
+}
+
+.app-container {
+    background-color: #CFD8DC;
+    font-family: Roboto, sans-serif;
+    margin: 15px 25px;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 2px 6px, #D7CCC8 0 2px 4px;
+}
+
+.app-container:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, #FFCA28 0 1px 4px;
+}
+
+.app-button-group {
+    background-color: #FFCC80;
+}
+
+.app-container-body {
+    background-color: #EEEEEE;
+}
+
+.field-style {
+    margin: 3px 0;
+    padding: 10px 0;
+}
+
+.disable-field-text {
+    color: rgb(0, 188, 212);
+    font-size: xx-small;
+}
