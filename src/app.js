@@ -19,9 +19,10 @@ class app extends Component {
         this.onTextFieldInputChange = this.onTextFieldInputChange.bind(this);
     };
 
+    //TODO:needs to be throttled
     onTextFieldInputChange(e, values) {
         try {
-            let translatedText = getTranslation(values, this.state.isAsmoSelected);
+            let translatedText = getTranslation(values, this.state.isAsmoSelected, 2);
 
             this.setState({translatedText: translatedText});
 
@@ -35,7 +36,7 @@ class app extends Component {
     }
 
     render() {
-        const {translatedText} = this.state
+        const {translatedText} = this.state;
         return (
             <div className="app">
                 <div className="app-header">
@@ -59,6 +60,9 @@ class app extends Component {
                                 onChange={this.onTextFieldInputChange}>
                             </TextField>
                         </div>
+                        <span className="disable-field-text">
+                                Note: Pressing ctrl+a will select all and pressing ctrl+c will copy
+                            </span>
                     </Paper>
                     <Paper rounded={false} style={PAPER_STYLE} zDepth={2}>
                         <div className="field-style">
