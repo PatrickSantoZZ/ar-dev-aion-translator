@@ -2,7 +2,7 @@ import _ from 'lodash';
 import {ASMO_LETTER_KEY_MAP, ELYOS_LETTER_KEY_MAP} from '../constants/letter-key-map';
 
 //TODO: create is empty function using spread operators
-const getTranslation = (input, isAsmo = true, _currenTable = 0) => {
+const translateUserInput = (input, isAsmoSelected = true, _currenTable = 0) => {
 
     let translation = 'Waiting to Translate';
     if (!_.isEmpty(input)) {
@@ -18,4 +18,4 @@ const getTranslation = (input, isAsmo = true, _currenTable = 0) => {
     return translation;
 };
 
-export {getTranslation};
+export {translateUserInput};

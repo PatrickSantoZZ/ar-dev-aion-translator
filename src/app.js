@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import './css/app.css';
+
+import _ from 'lodash';
+
 import ButtonGroup from './components/asmo-eloys-button-group/button-group';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import {PAPER_STYLE, PAPER_STYLE_TITLE} from "./constants/paper-style-sheet";
-import {getTranslation} from './utility/utility-functions';
+
+import {PAPER_STYLE, PAPER_STYLE_TITLE} from './constants/paper-style-sheet';
+import {translateUserInput} from './utility/utility-functions';
+
+import './css/app.css';
 
 class app extends Component {
     constructor(props) {
@@ -13,22 +18,54 @@ class app extends Component {
         this.state = {
             copied: false,
             isAsmoSelected: false,
-            translatedText: 'Text will be translated in real time'
+            translatedText: ''
         };
-        this.toggle = this.toggle.bind(this);
+
         this.onTextFieldInputChange = this.onTextFieldInputChange.bind(this);
+        this.toggle = this.toggle.bind(this);
     };
 
-    //TODO:needs to be throttled
-    onTextFieldInputChange(e, values) {
-        try {
-            let translatedText = getTranslation(values, this.state.isAsmoSelected, 2);
+    componentDidMount() {
+        this.throttledTranslation;
+        this.inputValuesFromUser = '';
 
-            this.setState({translatedText: translatedText});
+        let THROTTLE_INTERVAL = 1000; // <= adjust this number to see throttling in action
 
-        } catch (e) {
-            this.setState({translatedText: 'Unable to translate text :( '});
+        // wrap it and supply interval representing minimum delay between invocations
+        this.throttledTranslation = _.throttle(this.getTranslation, THROTTLE_INTERVAL);
+
+    }
+
+    componentWillUnmount() {
+        this.throttledTranslation.cancel();
+    }
+
+//TODO: create is empty function using spread operators
+    getTranslation() {
+        let {isAsmoSelected, translatedText} = this.state;
+        if (!_.isEmpty(this.inputValuesFromUser)) {
+            try {
+               // translatedText = translateUserInput(this.inputValuesFromUser);
+                console.log(this.inputValuesFromUser);
+
+            } catch (e) {
+                //logging
+                console.log('there is an error');
+            }
         }
+
+    }
+
+    //When a user inputs text in the field, the getTranslation is throttled
+    // by this.Translation method.. this will create better translation
+    onTextFieldInputChange(e, values) {
+        if (_.isEmpty(values)) {
+            this.inputValuesFromUser = '';
+        } else {
+            this.inputValuesFromUser = values;
+        }
+
+        this.throttledTranslation();
     }
 
     toggle(selection) {
