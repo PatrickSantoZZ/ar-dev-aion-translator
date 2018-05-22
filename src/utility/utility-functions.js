@@ -7,7 +7,7 @@ const translateUserInput = (input, isAsmoSelected = true) => {
     let translation = 'Waiting to Translate';
     if (!_.isEmpty(input)) {
         try {
-           
+
             translation = translateHelper(input, isAsmoSelected);
 
             //translation = input;
@@ -62,7 +62,7 @@ function Queue() {
     };
 
     this.toConsole = () => {
-        console.log('Queue: ', this.queue);
+
     };
 
     this.getLength = () => {
