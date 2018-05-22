@@ -43,7 +43,7 @@ class app extends Component {
 
 //TODO: create is empty function using spread operators
     getTranslation() {
-        let {isAsmoSelected, translatedText} = this.state;
+        let {isAsmoSelected} = this.state;
 
 
         if (!_.isEmpty(this.inputValuesFromUser)) {
