@@ -21,11 +21,13 @@ class app extends Component {
             translatedText: ''
         };
 
+        this.disableTextInputOnLaunch = true;
         this.onTextFieldInputChange = this.onTextFieldInputChange.bind(this);
         this.toggle = this.toggle.bind(this);
     };
 
     componentDidMount() {
+
         this.throttledTranslation;
         this.inputValuesFromUser = '';
         this._queue = myQueue;
@@ -86,6 +88,10 @@ class app extends Component {
     }
 
     toggle(selection) {
+        if (this.disableTextInputOnLaunch) {
+            this.disableTextInputOnLaunch = false;
+        }
+
         console.log('selection: isAsmoSelected', selection);
         this.setState({isAsmoSelected: selection});
     }
@@ -109,6 +115,8 @@ class app extends Component {
                         <div className="field-style">
                             <TextField
                                 id="inputField"
+
+                                disabled={this.disableTextInputOnLaunch}
                                 floatingLabelText="Enter Text"
                                 fullWidth={true}
                                 multiLine={true}

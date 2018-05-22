@@ -8,6 +8,8 @@ const translateUserInput = (input, isAsmoSelected = true) => {
     if (!_.isEmpty(input)) {
         try {
             console.log(input, isAsmoSelected);
+            translateHelper(input, isAsmoSelected);
+
             translation = input;
         } catch (e) {
             //logging
@@ -17,6 +19,22 @@ const translateUserInput = (input, isAsmoSelected = true) => {
 
     return translation;
 };
+
+
+function translateHelper(input, isAsmoSelected) {
+    let str;
+    let table = 0;
+    if (isAsmoSelected) {
+        for (let x in input)
+            console.log('for Each: ', x);
+    } else {
+
+
+    }
+
+
+    return str;
+}
 
 
 function Queue() {
