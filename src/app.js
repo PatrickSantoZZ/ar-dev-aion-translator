@@ -60,7 +60,6 @@ class app extends Component {
                     }
 
                 }
-                console.log('translatedText', translatedText);
                 this._queue.dequeue();
 
             } catch (e) {
@@ -88,7 +87,6 @@ class app extends Component {
             this.setState({disableTextInputOnLaunch: false});
         }
 
-        console.log('selection: isAsmoSelected', selection);
         this.setState({isAsmoSelected: selection});
     }
 
