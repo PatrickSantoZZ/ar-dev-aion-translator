@@ -17,11 +17,11 @@ class app extends Component {
 
         this.state = {
             copied: false,
+            disableTextInputOnLaunch: true,
             isAsmoSelected: false,
             translatedText: ''
         };
 
-        this.disableTextInputOnLaunch = true;
         this.onTextFieldInputChange = this.onTextFieldInputChange.bind(this);
         this.toggle = this.toggle.bind(this);
     };
@@ -88,8 +88,8 @@ class app extends Component {
     }
 
     toggle(selection) {
-        if (this.disableTextInputOnLaunch) {
-            this.disableTextInputOnLaunch = false;
+        if (this.state.disableTextInputOnLaunch) {
+            this.setState({disableTextInputOnLaunch: false});
         }
 
         console.log('selection: isAsmoSelected', selection);
@@ -97,7 +97,7 @@ class app extends Component {
     }
 
     render() {
-        const {translatedText} = this.state;
+        const {disableTextInputOnLaunch, translatedText} = this.state;
         return (
             <div className="app">
                 <div className="app-header">
@@ -115,8 +115,7 @@ class app extends Component {
                         <div className="field-style">
                             <TextField
                                 id="inputField"
-
-                                disabled={this.disableTextInputOnLaunch}
+                                disabled={disableTextInputOnLaunch}
                                 floatingLabelText="Enter Text"
                                 fullWidth={true}
                                 multiLine={true}
