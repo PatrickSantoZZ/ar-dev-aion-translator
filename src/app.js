@@ -28,7 +28,6 @@ class app extends Component {
 
     componentDidMount() {
 
-        this.throttledTranslation;
         this.inputValuesFromUser = '';
         this._queue = myQueue;
         let THROTTLE_INTERVAL = 1000; // <= adjust this number to see throttling in action
@@ -62,11 +61,8 @@ class app extends Component {
 
                 }
                 console.log('translatedText', translatedText);
-                console.log('length: ', this._queue.getLength());
-                this._queue.toConsole();
-
-
                 this._queue.dequeue();
+
             } catch (e) {
                 //logging
                 console.log('there is an error');

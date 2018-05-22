@@ -7,10 +7,10 @@ const translateUserInput = (input, isAsmoSelected = true) => {
     let translation = 'Waiting to Translate';
     if (!_.isEmpty(input)) {
         try {
-            console.log(input, isAsmoSelected);
-            translateHelper(input, isAsmoSelected);
+           
+            translation = translateHelper(input, isAsmoSelected);
 
-            translation = input;
+            //translation = input;
         } catch (e) {
             //logging
             console.log('there is an error')
@@ -22,16 +22,29 @@ const translateUserInput = (input, isAsmoSelected = true) => {
 
 
 function translateHelper(input, isAsmoSelected) {
-    let str;
+    let str = '';
     let table = 0;
+    let map;
     if (isAsmoSelected) {
-        for (let x in input)
-            console.log('for Each: ', x);
+        map = ASMO_LETTER_KEY_MAP;
     } else {
-
-
+        map = ELYOS_LETTER_KEY_MAP;
     }
 
+    for (let i in input) {
+        if (map.hasOwnProperty(input.charAt(i))) {
+
+            let inputCharacterKey = map[input.charAt(i)];
+            let currentTable = inputCharacterKey[Object.keys(inputCharacterKey)[table]];
+
+            str += currentTable.letter;
+            table = currentTable.number;
+
+        } else {
+            table = 0;
+            str += input.charAt(i);
+        }
+    }
 
     return str;
 }
