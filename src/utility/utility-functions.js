@@ -9,7 +9,7 @@ const translateUserInput = (input, isAsmoSelected = true) => {
         try {
 
             translation = translateHelper(input.toLowerCase(), isAsmoSelected);
-            //translation = input;
+
         } catch (e) {
             //logging
             console.log('there is an error')
@@ -58,10 +58,6 @@ function Queue() {
 
     this.dequeue = () => {
         this.queue.shift();
-    };
-
-    this.toConsole = () => {
-
     };
 
     this.getLength = () => {

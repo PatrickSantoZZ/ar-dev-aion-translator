@@ -41,7 +41,6 @@ class app extends Component {
         this.throttledTranslation.cancel();
     }
 
-//TODO: create is empty function using spread operators
     getTranslation() {
         let {isAsmoSelected} = this.state;
 
