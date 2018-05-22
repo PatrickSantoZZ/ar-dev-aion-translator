@@ -19,7 +19,7 @@ class ButtonGroup extends Component {
     }
 
     onPressAsmoButton() {
-        this.props.toggle(this.state.isAsmoButtonPressed);
+        this.props.toggle(true);
         this.setState({
             isAsmoButtonPressed: true,
             isElyosButtonPressed: false
@@ -27,7 +27,7 @@ class ButtonGroup extends Component {
     }
 
     onPressElyosButton() {
-        this.props.toggle(!this.state.isAsmoButtonPressed);
+        this.props.toggle(false);
         this.setState({
             isAsmoButtonPressed: false,
             isElyosButtonPressed: true

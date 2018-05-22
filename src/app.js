@@ -86,6 +86,7 @@ class app extends Component {
     }
 
     toggle(selection) {
+        console.log('selection: isAsmoSelected', selection);
         this.setState({isAsmoSelected: selection});
     }
 
